@@ -37,9 +37,9 @@ const SingleMovie: React.FC<SingleMovieProps> = () => {
   }
   const contents: ContentType[] = [
     { name: "Year of release:", Icon: (props: any) => <IoTimerOutline {...props} />, content: singleMovie?.year },
-    { name: "Year of release:", Icon: (props: any) => <MdStarRate {...props} />, content: singleMovie?.imDbRating },
-    { name: " Director:", Icon: (props: any) => <GiDirectorChair  {...props} />, content: movieCasts?.directors.items[0].name },
-    { name: " Writer:", Icon: (props: any) => <RiFilePaper2Line {...props} />, content: movieCasts?.writers.items[0].name },
+    { name: "Rating:", Icon: (props: any) => <MdStarRate {...props} />, content: singleMovie?.imDbRating },
+    { name: "Director:", Icon: (props: any) => <GiDirectorChair  {...props} />, content: movieCasts?.directors.items[0].name },
+    { name: "Writer:", Icon: (props: any) => <RiFilePaper2Line {...props} />, content: movieCasts?.writers.items[0].name },
   ]
 
   return (

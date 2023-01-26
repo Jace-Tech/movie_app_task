@@ -1,5 +1,5 @@
-import { Box, Collapse, Container, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Slide, Stack, Typography } from '@mui/material'
-import React, { ReactNode, useEffect, useState } from 'react'
+import { Box, Collapse, Container, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Stack, Typography } from '@mui/material'
+import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { GRAY, WHITE } from '../utils/colors'
 import { MdOutlineLocalFireDepartment, MdOutlineLocalMovies, MdOutlineMonitor } from "react-icons/md"
@@ -7,6 +7,7 @@ import { IoSearchOutline } from "react-icons/io5"
 import { HiOutlineBars3 } from "react-icons/hi2"
 import { RxCross2 } from "react-icons/rx"
 import Spacer from './Spacer'
+import { MAX_DEPTH } from '../utils/constants'
 
 interface HeaderProps { }
 
@@ -26,7 +27,7 @@ const Header: React.FC<HeaderProps> = () => {
   }, [pathname])
 
   return (
-    <Box py={1.8} bgcolor={GRAY} position={"sticky"} top={0} left={0} width={"100%"}>
+    <Box py={1.8} bgcolor={GRAY} zIndex={MAX_DEPTH} position={"sticky"} top={0} left={0} width={"100%"}>
       <Container maxWidth={"lg"}>
         <Stack direction={"row"} alignItems={"center"}>
           {/* Logo */}

@@ -6,10 +6,9 @@ import Footer from '../components/Footer'
 import MovieCard from '../components/MovieCard'
 import MovieCardSkeleton from '../components/MovieCardSkeleton'
 import { useMovieContext } from '../contexts/MovieContext'
-import useFetch from '../hooks/useFetch'
 import usePagination from '../hooks/usePagination'
 import ErrorPage from '../partials/ErrorPage'
-import { GRAY, MILK, WHITE } from '../utils/colors'
+import { MILK, WHITE } from '../utils/colors'
 
 interface SearchProps { }
 
