@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = () => {
   }, [pathname])
 
   return (
-    <Box py={1.8} bgcolor={GRAY} zIndex={MAX_DEPTH} position={"sticky"} top={0} left={0} width={"100%"}>
+    <Box py={1.8} bgcolor={GRAY} zIndex={MAX_DEPTH / 100} position={"sticky"} top={0} left={0} width={"100%"}>
       <Container maxWidth={"lg"}>
         <Stack direction={"row"} alignItems={"center"}>
           {/* Logo */}

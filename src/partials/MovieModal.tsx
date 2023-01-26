@@ -16,7 +16,7 @@ const MovieModal: React.FC<MovieModalProps> = () => {
   return (
     <Dialog
       maxWidth={"md"}
-      PaperProps={{ sx: { width: "100%", bgcolor: GRAY } }}
+      PaperProps={{ sx: { width: "100%", bgcolor: GRAY, } }}
       open={isModalOpen}
       onClose={() => setIsModalOpen(false)}
       aria-labelledby="modal-modal-title"
