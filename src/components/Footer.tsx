@@ -26,7 +26,7 @@ const Footer: React.FC<FooterProps> = ({ currentPage, setCurrentPage, totalPages
             />
           )}
         </Stack>
-        <Typography textAlign={"center"} color={MILK} mt={4} mb={3} fontSize={".9rem"} fontWeight={300}>Made with {"❤️"} by <Link fontWeight={500} color={WHITE} href="https://linktr.ee/jace_tech">J.A.C.E</Link></Typography>
+        <Typography textAlign={"center"} color={MILK} mt={4} mb={3} fontSize={".9rem"} fontWeight={300}>Made with {"❤️"} by <Link fontWeight={500} target={"_blank"} referrerPolicy={"no-referrer"} color={WHITE} href="https://linktr.ee/jace_tech">J.A.C.E</Link></Typography>
       </Container>
     </Box>
   )

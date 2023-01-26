@@ -1,5 +1,5 @@
 import { Box, Collapse, Container, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Slide, Stack, Typography } from '@mui/material'
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { GRAY, WHITE } from '../utils/colors'
 import { MdOutlineLocalFireDepartment, MdOutlineLocalMovies, MdOutlineMonitor } from "react-icons/md"
@@ -12,12 +12,18 @@ interface HeaderProps { }
 
 const Header: React.FC<HeaderProps> = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const {pathname} = useLocation()
   const links = [
     { path: "/", name: "Trending", Icon: (prev: any) => <MdOutlineLocalFireDepartment {...prev} /> },
     { path: "/movies", name: "Movies", Icon: (prev: any) => <MdOutlineLocalMovies {...prev} /> },
     { path: "/tv-series", name: "TV Series", Icon: (prev: any) => <MdOutlineMonitor {...prev} /> },
     { path: "/search", name: "Search", Icon: (prev: any) => <IoSearchOutline {...prev} /> },
   ]
+
+  // Toggle close when the route change
+  useEffect(() => {
+    setIsOpen(false)
+  }, [pathname])
 
   return (
     <Box py={1.8} bgcolor={GRAY} position={"sticky"} top={0} left={0} width={"100%"}>
