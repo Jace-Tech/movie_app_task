@@ -1,7 +1,7 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import { Box, Stack } from '@mui/material'
 import Header from './components/Header'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import { PageType } from './@types/common'
 import { BLACK } from './utils/colors'
 
@@ -16,6 +16,7 @@ import Loading from './components/Loading'
 import NotFoundPage from './partials/NotFoundPage'
 
 function App() {
+  const { pathname } = useLocation()
 
   const pages: PageType[] = [
     { path: "/", element: <Home /> },
@@ -26,6 +27,11 @@ function App() {
     { path: "/:id/plot", element: <MoviePlot /> },
     { path: "*", element: <NotFoundPage /> },
   ]
+
+  useEffect(() => {
+    // Scroll to top of page
+    window.scrollTo(0, 0)
+  }, [pathname])
 
   return (
     <Suspense fallback={<Loading />}>
