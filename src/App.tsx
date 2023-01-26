@@ -5,18 +5,26 @@ import { Route, Routes } from 'react-router-dom'
 import { PageType } from './@types/common'
 import { BLACK } from './utils/colors'
 
-const Category = lazy(() => import('./pages/Category'))
-const SingleCard = lazy(() => import('./pages/SingleCard'))
+const Movies = lazy(() => import('./pages/Movies'))
+const TvSeries = lazy(() => import('./pages/TvSeries'))
+const SingleMovie = lazy(() => import('./pages/SingleMovie'))
+const Search = lazy(() => import('./pages/Search'))
+const MoviePlot = lazy(() => import('./pages/MoviePlot'))
 
 import Home from './pages/Home'
 import Loading from './components/Loading'
+import NotFoundPage from './partials/NotFoundPage'
 
 function App() {
 
   const pages: PageType[] = [
     { path: "/", element: <Home /> },
-    { path: "/:cat", element: <Category /> },
-    { path: "/single", element: <SingleCard /> },
+    { path: "/movies", element: <Movies /> },
+    { path: "/tv-series", element: <TvSeries /> },
+    { path: "/single", element: <SingleMovie /> },
+    { path: "/search", element: <Search /> },
+    { path: "/:id/plot", element: <MoviePlot /> },
+    { path: "*", element: <NotFoundPage /> },
   ]
 
   return (

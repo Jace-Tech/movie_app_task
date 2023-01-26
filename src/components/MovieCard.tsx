@@ -1,13 +1,14 @@
 import { Grid, Grow, Slide, Stack, Typography } from '@mui/material'
+import { blue } from '@mui/material/colors';
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { MovieCardProps } from '../@types/common';
 import { GRAY, WHITE } from '../utils/colors';
+import { BROKEN_IMAGE } from '../utils/constants';
 
 
-const BROKEN_IMAGE = "https://upload.wikimedia.org/wikipedia/en/6/60/No_Picture.jpg"
 
-const MovieCard: React.FC<MovieCardProps> = ({ image, fullTitle, index, handleClick }) => {
+const MovieCard: React.FC<MovieCardProps> = ({ image, fullTitle, index, handleClick, title }) => {
   const [isHovering, setIsHovering] = useState(false)
   return (
     <Grow in timeout={Number(`${index! + 1}00`)}>
@@ -22,7 +23,17 @@ const MovieCard: React.FC<MovieCardProps> = ({ image, fullTitle, index, handleCl
             <img className={"moviecard-img"} src={image || BROKEN_IMAGE} />
           </div>
           <Stack>
-            <Typography onClick={handleClick} color={WHITE} textTransform={"capitalize"} fontSize={".9rem"} pt={1}>{fullTitle}</Typography>
+            <Typography 
+              sx={{ "&:hover": { 
+                textDecoration: "underline" 
+              }, cursor: "pointer" }} 
+              onClick={handleClick} color={WHITE} 
+              textTransform={"capitalize"} 
+              fontSize={".9rem"} 
+              pt={1}
+            >
+              {fullTitle || title}
+            </Typography>
           </Stack>
         </Stack>
       </Grid>

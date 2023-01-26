@@ -1,22 +1,72 @@
-import React, { createContext, useContext, useState } from "react";
-import { MovieCardProps } from "../@types/common";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { MovieCardProps, MovieCastType, TrailerType } from "../@types/common";
+import { fetchMovieCasts, fetchMovieTrailer, fetchMovieWiki } from "../api";
 
 interface MovieContextProps {
   setSingleMovie: (state: MovieCardProps) => void;
   singleMovie: MovieCardProps | null;
+  movieDetails: string;
+  movieDetailsFull: string;
+  movieCasts: MovieCastType | null;
+  error: boolean;
+  movieTrailer: TrailerType | null;
 }
-const MovieContext = createContext({} as MovieContextProps); 
+const MovieContext = createContext({} as MovieContextProps);
 
 interface MovieContextProviderProps {
   children: JSX.Element;
-} 
+}
 
-const MovieContextProvider: React.FC<MovieContextProviderProps> = ({ children }) => { 
+const MovieContextProvider: React.FC<MovieContextProviderProps> = ({ children }) => {
   const [singleMovie, setSingleMovie] = useState<MovieCardProps | null>(null)
-  return ( 
-    <MovieContext.Provider value={{ setSingleMovie, singleMovie}}> 
-      {children} 
-    </MovieContext.Provider> 
+  const [movieDetails, setMovieDetails] = useState<string>("")
+  const [movieDetailsFull, setMovieDetailsFull] = useState<string>("")
+  const [movieCasts, setMovieCasts] = useState<MovieCastType | null>(null)
+  const [movieTrailer, setMovieTrailer] = useState<TrailerType | null>(null)
+  const [error, setError] = useState<boolean>(false)
+
+  const handleGetDetails = async () => {
+    const data = await fetchMovieWiki(singleMovie?.id!)
+    if (!data) return;
+    if (("success" in data && !data.success) || data?.errorMessage) {
+      setError(true)
+      return
+    }
+    setMovieDetails(data?.plotShort?.plainText)
+    setMovieDetailsFull(data?.plotFull?.plainText)
+  }
+
+  const handleGetCasts = async () => {
+    const data = await fetchMovieCasts(singleMovie?.id!)
+    if (!data) return;
+    if (("success" in data && !data.success) || data?.errorMessage) {
+      setError(true)
+      return
+    }
+    setMovieCasts(data)
+  }
+
+  const handleGetTrailer = async () => {
+    const data = await fetchMovieTrailer(singleMovie?.id!)
+    if (!data) return;
+    if (("success" in data && !data.success) || data?.errorMessage) {
+      setError(true)
+      return
+    }
+    setMovieTrailer(data)
+  }
+
+  useEffect(() => {
+    if (!singleMovie) return
+    handleGetDetails()
+    handleGetCasts()
+    handleGetTrailer()
+  }, [singleMovie])
+
+  return (
+    <MovieContext.Provider value={{ setSingleMovie, movieTrailer, singleMovie, movieDetails, movieCasts, error, movieDetailsFull }}>
+      {children}
+    </MovieContext.Provider>
   )
 }
 

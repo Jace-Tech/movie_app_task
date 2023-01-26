@@ -1,0 +1,1 @@
+export const BROKEN_IMAGE = "https://upload.wikimedia.org/wikipedia/en/6/60/No_Picture.jpg"

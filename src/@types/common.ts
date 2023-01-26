@@ -20,3 +20,64 @@ export interface MovieCardProps {
   index?: number;
   handleClick?: () => void;
 } 
+
+export type ActorDetail = {
+  id: string;
+  image: string;
+  name: string;
+  asCharacter: string;
+}
+
+type Makers = {
+  id: string;
+  name: string;
+  description: string;
+}
+
+export interface MovieCastType {
+  imDbId: string;
+  title: string;
+  fullTitle: string;
+  type: string;
+  year: string | number;
+  directors: {
+    job: string
+    items: Makers[]
+  };
+  writers: {
+      job: string;
+      items: Makers[]
+  };
+  actors: ActorDetail[]
+}
+
+export interface TrailerType {
+  imDbId: string;
+  title: string;
+  fullTitle: string;
+  type: string;
+  year: string | number;
+  videoId: string;
+  videoTitle: string;
+  videoDescription: string;
+  thumbnailUrl: string;
+  uploadDate: string;
+  link: string;
+  linkEmbed: string;
+  errorMessage: string;
+}
+
+export type SingleSearchType = {
+  id: string;
+  resultType: string;
+  image: string;
+  title: string;
+  description: string;
+}
+
+export interface SearchResultType {
+  searchType: string;
+  expression: string;
+  results: SingleSearchType[];
+  errorMessage: string;
+}

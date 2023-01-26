@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
 
 const usePagination = (arr: any[], count: number) => {
+  arr = arr || []
   const [dataArr, setDataArr] = useState<any[]>(arr)
   const [currentPage, setCurrentPage] = useState<number>(1)
-  const totalPages = arr.length % count;
+  const totalPages = Math.floor(arr.length / count);
   const [pageData, setPageData] = useState<any[]>([])
 
   useEffect(() => {
     const startIndex = ((currentPage - 1) * count);
-    const data = dataArr.slice(startIndex, startIndex + count)
+    const endIndex = currentPage === totalPages ? -1 : startIndex + count
+    const data = dataArr.slice(startIndex, endIndex)
     console.log({ dataItem: data })
     setPageData(data)
   }, [currentPage, dataArr])

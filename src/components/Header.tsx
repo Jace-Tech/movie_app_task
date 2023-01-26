@@ -5,6 +5,8 @@ import { GRAY, WHITE } from '../utils/colors'
 import { MdOutlineLocalFireDepartment, MdOutlineLocalMovies, MdOutlineMonitor } from "react-icons/md"
 import { IoSearchOutline } from "react-icons/io5"
 import { HiOutlineBars3 } from "react-icons/hi2"
+import { RxCross2 } from "react-icons/rx"
+import Spacer from './Spacer'
 
 interface HeaderProps { }
 
@@ -23,7 +25,7 @@ const Header: React.FC<HeaderProps> = () => {
         <Stack direction={"row"} alignItems={"center"}>
           {/* Logo */}
           <Link to={"/"} style={{ textDecoration: "none" }}>
-            <Typography variant='h6' color={WHITE}>MoviesHub</Typography>
+            <Typography variant='h6' color={WHITE}>MoviesApp</Typography>
           </Link>
 
           {/* Nav Links */}
@@ -32,12 +34,13 @@ const Header: React.FC<HeaderProps> = () => {
           </Stack>
 
           {/* Spacer */}
-          <Box flex={1} display={{ xs: "flex", sm: "none" }} />
+          <Spacer flex={1} display={{ xs: "flex", sm: "none" }} />
 
           {/* Mobile Menu Button */}
           <Stack pl={3} direction={"row"} spacing={3} display={{ xs: "flex", sm: "none" }}>
-            <IconButton sx={{ color: WHITE }} onClick={() => setIsOpen(prev => !prev)} size={"large"}>
-              <HiOutlineBars3 />
+            
+            <IconButton sx={{ color: WHITE, transition: ".4s", transform: `rotate(${isOpen ? '90deg' : '0deg'})` }} onClick={() => setIsOpen(prev => !prev)} size={"large"}>
+              { isOpen ? <RxCross2 /> : <HiOutlineBars3 /> }
             </IconButton>
           </Stack>
         </Stack>

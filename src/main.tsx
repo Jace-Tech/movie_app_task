@@ -1,9 +1,8 @@
 import { createTheme, ThemeProvider } from '@mui/material'
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
-import MovieContextProvider from './contexts/MovieContext'
+import GlobalContextProvider from './contexts/GlobalContext'
 import './index.css'
 
 const theme = createTheme({
@@ -14,10 +13,10 @@ const theme = createTheme({
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter>
-    <MovieContextProvider>
+    <GlobalContextProvider>
       <ThemeProvider theme={theme}>
         <App />
       </ThemeProvider>
-    </MovieContextProvider>
+    </GlobalContextProvider>
   </BrowserRouter>
 )
