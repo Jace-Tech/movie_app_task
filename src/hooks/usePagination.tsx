@@ -11,7 +11,6 @@ const usePagination = (arr: any[], count: number) => {
     const startIndex = ((currentPage - 1) * count);
     const endIndex = currentPage === totalPages ? -1 : startIndex + count
     const data = dataArr.slice(startIndex, endIndex)
-    console.log({ dataItem: data })
     setPageData(data)
   }, [currentPage, dataArr])
   

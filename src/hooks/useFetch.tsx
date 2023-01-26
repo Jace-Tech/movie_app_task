@@ -9,7 +9,6 @@ const useFetch = (fetchAction : () => Promise<any>) => {
     // Set Feting
     setIsFetching(true)
     const result = await fetchAction()
-    console.log({ result })
     setData(result)
     setIsFetching(false)
   }
