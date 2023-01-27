@@ -35,7 +35,7 @@ const MovieModal: React.FC<MovieModalProps> = () => {
       </DialogTitle>
 
       <DialogContent>
-        {movieTrailer?.linkEmbed ? (
+        { movieTrailer ? (
           <embed src={movieTrailer?.linkEmbed} type="" className="movie-embed" />
         ) : (
           <Skeleton variant={"rectangular"} width={"calc(100%)"} height={400} animation={"wave"} />

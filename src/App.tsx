@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect } from 'react'
-import { Box, Stack } from '@mui/material'
+import { Stack } from '@mui/material'
 import Header from './components/Header'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { PageType } from './@types/common'
