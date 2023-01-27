@@ -5,6 +5,7 @@ import Spacer from '../components/Spacer'
 import { useModalContext } from '../contexts/ModalContext'
 import { useMovieContext } from '../contexts/MovieContext'
 import { GRAY, WHITE } from '../utils/colors'
+import { MAX_DEPTH } from '../utils/constants'
 
 
 interface MovieModalProps { }
@@ -12,11 +13,12 @@ interface MovieModalProps { }
 const MovieModal: React.FC<MovieModalProps> = () => {
   const { isModalOpen, setIsModalOpen } = useModalContext()
   const { singleMovie, movieTrailer } = useMovieContext()
+  const zIndex = MAX_DEPTH + 1
 
   return (
     <Dialog
       maxWidth={"md"}
-      PaperProps={{ sx: { width: "100%", bgcolor: GRAY, } }}
+      PaperProps={{ sx: { width: "100%", bgcolor: GRAY,  zIndex } }}
       open={isModalOpen}
       onClose={() => setIsModalOpen(false)}
       aria-labelledby="modal-modal-title"
