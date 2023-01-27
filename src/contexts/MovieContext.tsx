@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { MovieCardProps, MovieCastType, TrailerType } from "../@types/common";
+import { MovieCardProps, MovieCastType, TrailerType, TrailerTypeYT } from "../@types/common";
 import { fetchMovieCasts, fetchMovieTrailer, fetchMovieWiki } from "../api";
 
 interface MovieContextProps {
@@ -9,7 +9,8 @@ interface MovieContextProps {
   movieDetailsFull: string;
   movieCasts: MovieCastType | null;
   error: boolean;
-  movieTrailer: TrailerType | null;
+  movieTrailer: TrailerType  | null;
+  // movieTrailer: TrailerTypeYT | null;
 }
 const MovieContext = createContext({} as MovieContextProps);
 
@@ -22,6 +23,7 @@ const MovieContextProvider: React.FC<MovieContextProviderProps> = ({ children })
   const [movieDetails, setMovieDetails] = useState<string>("")
   const [movieDetailsFull, setMovieDetailsFull] = useState<string>("")
   const [movieCasts, setMovieCasts] = useState<MovieCastType | null>(null)
+  // const [movieTrailer, setMovieTrailer] = useState<TrailerTypeYT | null>(null)
   const [movieTrailer, setMovieTrailer] = useState<TrailerType | null>(null)
   const [error, setError] = useState<boolean>(false)
 
@@ -56,11 +58,22 @@ const MovieContextProvider: React.FC<MovieContextProviderProps> = ({ children })
     setMovieTrailer(data)
   }
 
+  const handleGetTrailerYT = async () => {
+    const data = await fetchMovieTrailer(singleMovie?.id!)
+    if (!data) return;
+    if (("success" in data && !data.success) || data?.errorMessage) {
+      setError(true)
+      return
+    }
+    setMovieTrailer(data)
+  }
+
   useEffect(() => {
     if (!singleMovie) return
     handleGetDetails()
     handleGetCasts()
     handleGetTrailer()
+    // handleGetTrailerYT()
   }, [singleMovie])
 
   return (

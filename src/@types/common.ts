@@ -5,7 +5,6 @@ export type PageType = {
   element: ReactNode;
 }
 
-
 export interface MovieCardProps {
   crew?: string;
   fullTitle?:string;
@@ -67,6 +66,17 @@ export interface TrailerType {
   errorMessage: string;
 }
 
+export interface TrailerTypeYT {
+  imDbId: string;
+  title: string;
+  fullTitle: string;
+  type: string;
+  year: string;
+  videoId: string;
+  videoUrl: string;
+  errorMessage: string;
+}
+
 export type SingleSearchType = {
   id: string;
   resultType: string;
@@ -81,3 +91,4 @@ export interface SearchResultType {
   results: SingleSearchType[];
   errorMessage: string;
 }
+

@@ -88,7 +88,7 @@ const SingleMovie: React.FC<SingleMovieProps> = () => {
                 flexWrap={"wrap"}
               >
                 {contents.map(({ Icon, name, content }) => (
-                  <Stack direction="row" alignItems={"center"} spacing={.5}>
+                  <Stack key={name} direction="row" alignItems={"center"} spacing={.5}>
                     <Icon size={20} />
                     <Typography fontSize={".85rem"} textTransform={"capitalize"} >
                       {name}

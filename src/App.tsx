@@ -10,7 +10,6 @@ const TvSeries = lazy(() => import('./pages/TvSeries'))
 const SingleMovie = lazy(() => import('./pages/SingleMovie'))
 const Search = lazy(() => import('./pages/Search'))
 const MoviePlot = lazy(() => import('./pages/MoviePlot'))
-const Trailer = lazy(() => import('./pages/Trailer'))
 
 import Home from './pages/Home'
 import Loading from './components/Loading'
@@ -26,7 +25,6 @@ function App() {
     { path: "/tv-series", element: <TvSeries /> },
     { path: "/single", element: <SingleMovie /> },
     { path: "/search", element: <Search /> },
-    { path: "/trailer", element: <Trailer /> },
     { path: "/:id/plot", element: <MoviePlot /> },
     { path: "*", element: <NotFoundPage /> },
   ]

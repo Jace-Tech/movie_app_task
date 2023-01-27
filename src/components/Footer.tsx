@@ -19,7 +19,7 @@ const Footer: React.FC<FooterProps> = ({ currentPage, setCurrentPage, totalPages
               variant='outlined'
               color="primary"
               count={totalPages}
-              boundaryCount={1}
+              boundaryCount={0}
               size={"large"}
               defaultPage={currentPage}
               onChange={(_, pageNum) => setCurrentPage(pageNum)}

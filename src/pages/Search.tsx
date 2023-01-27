@@ -9,12 +9,14 @@ import { useMovieContext } from '../contexts/MovieContext'
 import usePagination from '../hooks/usePagination'
 import ErrorPage from '../partials/ErrorPage'
 import { MILK, WHITE } from '../utils/colors'
+import notFound from "../assets/oops.png"
 
 interface SearchProps { }
 
 const Search: React.FC<SearchProps> = () => {
   const [timeoutHandler, setTimeoutHandler] = useState<number | null>(null)
   const [isFetching, setIsFetching] = useState<boolean>(false)
+  const [isEmpty, setIsEmpty] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
   const { setSingleMovie } = useMovieContext()
   const [searchQuery, setSearchQuery] = useState<string>("")
@@ -40,6 +42,14 @@ const Search: React.FC<SearchProps> = () => {
       setError(true)
       return
     }
+
+    if (!data.results.length) {
+      setIsEmpty(true)
+    }
+    else {
+      setIsEmpty(false)
+    }
+
     setIsFetching(false)
     setSearchQuery(query)
     setSearchResults(data.results)
@@ -71,6 +81,13 @@ const Search: React.FC<SearchProps> = () => {
           <Typography my={4} color={WHITE} fontSize={"1.5rem"}>Showing results for: <span style={{ color: MILK }}>{searchQuery}</span></Typography>
         )}
 
+        {isEmpty && (
+          <Stack minHeight={"40vh"} alignItems={"center"} mt={2}>
+            <img src={notFound} className="error-image" />
+            <Typography fontSize={".9rem"} color={MILK}>Sorry, we couldn't find any movies with the title. <span color={WHITE}>{searchQuery}</span></Typography>
+          </Stack>
+        )}
+
         <Grid container flex={1} spacing={3}>
           {
             isFetching ?
@@ -86,7 +103,7 @@ const Search: React.FC<SearchProps> = () => {
           setCurrentPage={setCurrentPage}
           currentPage={currentPage}
         />
-      )}  
+      )}
     </Box>
   )
 }

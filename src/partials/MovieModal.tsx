@@ -1,4 +1,4 @@
-import { Modal, Box, Typography, Container, Stack, IconButton, Dialog, DialogTitle, DialogContent, Skeleton, DialogActions, Button } from '@mui/material'
+import { Typography, Stack, IconButton, Dialog, DialogTitle, DialogContent, Skeleton, DialogActions, Button } from '@mui/material'
 import React from 'react'
 import { RxCross2 } from 'react-icons/rx'
 import Spacer from '../components/Spacer'
@@ -38,7 +38,7 @@ const MovieModal: React.FC<MovieModalProps> = () => {
 
       <DialogContent>
         { movieTrailer ? (
-          <embed src={movieTrailer?.linkEmbed} type="" className="movie-embed" />
+          <embed src={movieTrailer?.linkEmbed } type="" className="movie-embed" />
         ) : (
           <Skeleton variant={"rectangular"} width={"calc(100%)"} height={400} animation={"wave"} />
         )}

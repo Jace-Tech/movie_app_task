@@ -1,4 +1,4 @@
-import { TRENDING_ENDPOINT, MOVIES_ENDPOINT, TV_ENDPOINT, WIKI_ENDPOINT, CASTS_ENDPOINT, TRAILER_ENDPOINT, SEARCH_ENDPOINT } from './endpoints';
+import { TRENDING_ENDPOINT, MOVIES_ENDPOINT, TV_ENDPOINT, WIKI_ENDPOINT, CASTS_ENDPOINT, TRAILER_ENDPOINT, SEARCH_ENDPOINT, TRAILER_YT_ENDPOINT } from './endpoints';
 
 
 export const fetchTrendingMovies = async () => {
@@ -54,6 +54,16 @@ export const fetchMovieCasts = async (id: string) => {
 export const fetchMovieTrailer = async (id: string) => {
   try {
     const request = await fetch(TRAILER_ENDPOINT + id)
+    const result = await request.json()
+    return result
+  } catch (err: any) {
+    return { success: false, message: err.message }
+  }
+}
+
+export const fetchMovieTrailerYT = async (id: string) => {
+  try {
+    const request = await fetch(TRAILER_YT_ENDPOINT + id)
     const result = await request.json()
     return result
   } catch (err: any) {
